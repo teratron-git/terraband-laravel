@@ -1,18 +1,32 @@
 {
-    "private": true,
-    "scripts": {
-        "dev": "npm run development",
-        "development": "mix",
-        "watch": "mix watch",
-        "watch-poll": "mix watch -- --watch-options-poll=1000",
-        "hot": "mix watch --hot",
-        "prod": "npm run production",
-        "production": "mix --production"
+  "name": "social-network",
+  "version": "0.1.0",
+  "private": true,
+  "author": "Sergei Tereshkov",
+  "scripts": {
+    "dev": "npm run development",
+    "development": "mix",
+    "watch": "mix watch",
+    "watch-poll": "mix watch -- --watch-options-poll=1000",
+    "hot": "mix watch --hot",
+    "prod": "npm run production",
+    "production": "mix --production"
+  },
+  "devDependencies": {
+    "axios": "^0.21",
+    "commitizen": "^4.2.4",
+    "cz-customizable": "^6.3.0",
+    "laravel-mix": "^6.0.19",
+    "lodash": "^4.17.21",
+    "postcss": "^8.3.3",
+    "prettier": "^2.3.1"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-customizable"
     },
-    "devDependencies": {
-        "axios": "^0.21",
-        "laravel-mix": "^6.0.6",
-        "lodash": "^4.17.19",
-        "postcss": "^8.1.14"
+    "cz-customizable": {
+      "config": "config/git/commitizen.js"
     }
+  }
 }
