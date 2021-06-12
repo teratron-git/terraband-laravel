@@ -1,0 +1,54 @@
+version: "3.3"
+
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: ./docker/Nginx.Dockerfile
+    ports:
+      - 80:80
+    links:
+      - php
+    volumes:
+      - ./:/var/www/main_App
+  php:
+    volumes:
+      - ./:/var/www/main_App
+    build:
+      context: .
+      dockerfile: ./docker/Php.Dockerfile
+    links:
+      - mysql
+    # command: bash -c "composer update"
+    # entrypoint:
+    #   - composer
+    #   - install
+  mysql:
+    image: mysql:8.0.25
+    ports: 
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=testdb
+  composer:
+    build:
+      context: .
+      dockerfile: ./docker/Composer.Dockerfile
+    volumes:
+      - ./:/var/www/main_App
+    working_dir: /var/www/main_App
+    # entrypoint:
+    #   - composer
+    #   - install
+    command: bash -c "composer update"
+  node:
+    build:
+      context: .
+      dockerfile: ./docker/Node.Dockerfile
+    volumes:
+      - ./:/var/www/main_App
+    working_dir: /var/www/main_App
+    # entrypoint:
+    #   - composer
+    #   - install
+    command: bash -c "npm update && npx npm-check-updates -u"
