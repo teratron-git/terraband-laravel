@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: ./docker/Nginx.Dockerfile
     ports:
-      - 80:80
+      - 8080:80
     links:
       - php
     volumes:
@@ -52,3 +52,8 @@ services:
     #   - composer
     #   - install
     command: bash -c "npm update && npx npm-check-updates -u"
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8081:8080
